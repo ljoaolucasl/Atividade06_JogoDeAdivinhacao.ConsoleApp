@@ -21,7 +21,7 @@ namespace JogoAdivinhacao.ConsoleApp
 
                 EscolhaDeDificuldade(dificuldade, ref chances);
 
-                SorteioNumeroAleatorio(ref numeroAleatorio);
+                SorteioNumeroAleatorio(ref numeroAleatorio, GerarNumeroAleatorio);
 
                 VerificaNumeroETentativa(chute, numeroAleatorio, pontuacaoTotal, chances);
 
@@ -67,10 +67,10 @@ namespace JogoAdivinhacao.ConsoleApp
             } while (chances == 0 || !testInt);
         }
 
-        private static void SorteioNumeroAleatorio(ref int numeroAleatorio)
+        private static void SorteioNumeroAleatorio(ref int numeroAleatorio, Random GerarNumeroAleatorio)
         {
-            numeroAleatorio = 7; //GerarNumeroAleatorio.Next(1, 21);
-            Console.WriteLine("\nFoi sorteado um número de 1 a 20! Tente acertar qual é esse número!");
+            numeroAleatorio = GerarNumeroAleatorio.Next(1, 21);
+            Console.WriteLine("\n\nFoi sorteado um número de 1 a 20! \nTente acertar qual é esse número!");
         }
 
         private static void VerificaNumeroETentativa(int chute, int numeroAleatorio, int pontuacaoTotal, int chances)
@@ -119,6 +119,7 @@ namespace JogoAdivinhacao.ConsoleApp
                     Console.WriteLine("│Suas chances acabaram! Você perdeu!│");
                     Console.WriteLine("└                                   ┘");
                     Console.ResetColor();
+                    Console.WriteLine($"O número sorteado era {numeroAleatorio}");
                     Console.WriteLine("Mas não desanime. Tente novamente!");
                     Divisao();
                     break;
